@@ -5,7 +5,7 @@ import Clientes from "./src/views/Clientes";
 import Promedio from "./src/views/Promedio";
 import SumNum from "./src/views/SumNum";
 import Triangulos from "./src/views/Triangulos";
-import IMC from "./src/views/IMC.JS";
+import IMC from "./src/views/IMC";
 
 import { View, StyleSheet,ScrollView } from "react-native";
 
