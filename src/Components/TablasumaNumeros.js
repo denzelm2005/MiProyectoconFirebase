@@ -1,35 +1,33 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
-import BotonEliminarProducto from "./BotonEliminarProducto.js";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
+import BotonEliminarsumaNumeros from "./BotonEliminarsumaNumeros"
 
-const TablaProductos = ({ productos, eliminarProducto, editarProducto }) => {
+const TablasumaNumeros = ({ sumas, eliminarSuma }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>Tabla de Productos</Text>
+      <Text style={styles.titulo}>Tabla de Sumas</Text>
 
       {/* Encabezado de la tabla */}
       <View style={[styles.fila, styles.encabezado]}>
-        <Text style={[styles.celda, styles.textoEncabezado]}>Nombre</Text>
-        <Text style={[styles.celda, styles.textoEncabezado]}>Precio</Text>
+        <Text style={[styles.celda, styles.textoEncabezado]}>Num1</Text>
+        <Text style={[styles.celda, styles.textoEncabezado]}>Num2</Text>
+        <Text style={[styles.celda, styles.textoEncabezado]}>Resultado</Text>
         <Text style={[styles.celda, styles.textoEncabezado]}>Acciones</Text>
       </View>
 
       {/* Contenido de la tabla */}
       <ScrollView>
-        {productos.map((item) => (
+        {sumas.map((item) => (
           <View key={item.id} style={styles.fila}>
-            <Text style={styles.celda}>{item.nombre}</Text>
-            <Text style={styles.celda}>${item.precio}</Text>
+            <Text style={styles.celda}>{item.num1}</Text>
+            <Text style={styles.celda}>{item.num2}</Text>
+            <Text style={styles.celda}>{item.num1 + item.num2}</Text>
+
+            {/* Columna de Acciones */}
             <View style={styles.celdaAcciones}>
-              <TouchableOpacity
-                style={styles.botonEditar}
-                onPress={() => editarProducto(item)}
-              >
-                <Text style={styles.textoBotonEditar}>🖋️</Text>
-              </TouchableOpacity>
-              <BotonEliminarProducto
+              <BotonEliminarsumaNumeros
                 id={item.id}
-                eliminarProducto={eliminarProducto}
+                eliminarSuma={eliminarSuma} // aquí se mantiene la lógica
               />
             </View>
           </View>
@@ -39,6 +37,7 @@ const TablaProductos = ({ productos, eliminarProducto, editarProducto }) => {
   );
 };
 
+// --- ESTILOS REUTILIZADOS ---
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -62,7 +61,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   celdaAcciones: {
-    flex: 1,
+    flex: 0.7,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
@@ -73,17 +72,6 @@ const styles = StyleSheet.create({
     fontSize: 17,
     textAlign: "center",
   },
-  botonEditar: {
-    backgroundColor: "#7c787886",
-    paddingVertical: 6,
-    paddingHorizontal: 12,
-    borderRadius: 4,
-  },
-  textoBotonEditar: {
-    color: "#FFF",
-    fontSize: 14,
-    fontWeight: "600",
-  },
 });
 
-export default TablaProductos;
+export default TablasumaNumeros;

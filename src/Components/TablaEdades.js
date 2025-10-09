@@ -1,36 +1,27 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
-import BotonEliminarProducto from "./BotonEliminarProducto.js";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
+import BotonEliminarEdades from "./BotonEliminarEdades.js";
 
-const TablaProductos = ({ productos, eliminarProducto, editarProducto }) => {
+const TablaEdades = ({ edades, eliminarEdad }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>Tabla de Productos</Text>
+      <Text style={styles.titulo}>Tabla de Edades</Text>
 
       {/* Encabezado de la tabla */}
       <View style={[styles.fila, styles.encabezado]}>
         <Text style={[styles.celda, styles.textoEncabezado]}>Nombre</Text>
-        <Text style={[styles.celda, styles.textoEncabezado]}>Precio</Text>
+        <Text style={[styles.celda, styles.textoEncabezado]}>Edad</Text>
         <Text style={[styles.celda, styles.textoEncabezado]}>Acciones</Text>
       </View>
 
       {/* Contenido de la tabla */}
       <ScrollView>
-        {productos.map((item) => (
+        {edades.map((item) => (
           <View key={item.id} style={styles.fila}>
             <Text style={styles.celda}>{item.nombre}</Text>
-            <Text style={styles.celda}>${item.precio}</Text>
+            <Text style={styles.celda}>{item.edad}</Text>
             <View style={styles.celdaAcciones}>
-              <TouchableOpacity
-                style={styles.botonEditar}
-                onPress={() => editarProducto(item)}
-              >
-                <Text style={styles.textoBotonEditar}>🖋️</Text>
-              </TouchableOpacity>
-              <BotonEliminarProducto
-                id={item.id}
-                eliminarProducto={eliminarProducto}
-              />
+              <BotonEliminarEdades id={item.id} eliminarEdad={eliminarEdad} />
             </View>
           </View>
         ))}
@@ -73,17 +64,6 @@ const styles = StyleSheet.create({
     fontSize: 17,
     textAlign: "center",
   },
-  botonEditar: {
-    backgroundColor: "#7c787886",
-    paddingVertical: 6,
-    paddingHorizontal: 12,
-    borderRadius: 4,
-  },
-  textoBotonEditar: {
-    color: "#FFF",
-    fontSize: 14,
-    fontWeight: "600",
-  },
 });
 
-export default TablaProductos;
+export default TablaEdades;

@@ -1,9 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
-// Reutilizamos el BotonEliminarProducto para esta nueva tabla
-import BotonEliminarCliente from "./BotonEliminarCliente.js"; 
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
+import BotonEliminarCliente from "./BotonEliminarCliente.js";
 
-const TablaClientes = ({ clientes, eliminarCliente }) => {
+const TablaClientes = ({ clientes, eliminarCliente, editarCliente }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.titulo}>Tabla de Clientes</Text>
@@ -11,7 +10,7 @@ const TablaClientes = ({ clientes, eliminarCliente }) => {
       {/* Encabezado de la tabla */}
       <View style={[styles.fila, styles.encabezado]}>
         <Text style={[styles.celda, styles.textoEncabezado]}>Nombre</Text>
-        <Text style={[styles.celda, styles.textoEncabezado]}>Apellido</Text> 
+        <Text style={[styles.celda, styles.textoEncabezado]}>Apellido</Text>
         <Text style={[styles.celda, styles.textoEncabezado]}>Cédula</Text>
         <Text style={[styles.celda, styles.textoEncabezado]}>Acciones</Text>
       </View>
@@ -19,19 +18,20 @@ const TablaClientes = ({ clientes, eliminarCliente }) => {
       {/* Contenido de la tabla */}
       <ScrollView>
         {clientes.map((item) => (
-          // Usamos el ID del documento (ej: 27b6mAPzICRxoRE2zA1Z) como key
-          <View key={item.id} style={styles.fila}> 
-            {/* Campos del cliente de la imagen */}
+          <View key={item.id} style={styles.fila}>
             <Text style={styles.celda}>{item.nombre}</Text>
-            <Text style={styles.celda}>{item.apellido}</Text> 
+            <Text style={styles.celda}>{item.apellido}</Text>
             <Text style={styles.celda}>{item.cedula}</Text>
-
-            {/* Columna de Acciones */}
             <View style={styles.celdaAcciones}>
+              <TouchableOpacity
+                style={styles.botonEditar}
+                onPress={() => editarCliente(item)}
+              >
+                <Text style={styles.textoBotonEditar}>🖋️</Text>
+              </TouchableOpacity>
               <BotonEliminarCliente
                 id={item.id}
-                // Cambiamos a eliminarCliente
-                eliminarCliente={eliminarCliente} 
+                eliminarCliente={eliminarCliente}
               />
             </View>
           </View>
@@ -41,13 +41,11 @@ const TablaClientes = ({ clientes, eliminarCliente }) => {
   );
 };
 
-// --- ESTILOS MODIFICADOS LIGERAMENTE PARA ACOMODAR UNA COLUMNA EXTRA ---
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    alignSelf: "stretch"
+    padding: 10,
+    alignSelf: "stretch",
   },
   titulo: { fontSize: 22, fontWeight: "bold", marginBottom: 10 },
   fila: {
@@ -60,15 +58,13 @@ const styles = StyleSheet.create({
   encabezado: {
     backgroundColor: "#f0f0f0",
   },
-  // La celda ahora tiene un flex menor (flex: 1) para dar espacio a la columna extra
-  celda: { 
-    flex: 1, 
+  celda: {
+    flex: 1,
     fontSize: 16,
     textAlign: "center",
   },
   celdaAcciones: {
-    // La columna de acciones es más pequeña
-    flex: 0.7, 
+    flex: 0.7,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
@@ -78,6 +74,17 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 17,
     textAlign: "center",
+  },
+  botonEditar: {
+    backgroundColor: "#909192ff",
+    paddingVertical: 6,
+    paddingHorizontal: 5,
+    borderRadius: 4,
+  },
+  textoBotonEditar: {
+    color: "#FFF",
+    fontSize: 14,
+    fontWeight: "600",
   },
 });
 
