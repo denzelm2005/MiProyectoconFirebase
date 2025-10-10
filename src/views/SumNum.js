@@ -3,7 +3,7 @@ import { View, StyleSheet } from "react-native";
 import { db } from "../database/firebaseconfig.js";
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import TitulosumaNumeros from "../Components/TitulosumNumeros.js";
-import FormulariosumaNumeros from "../Components/FormulariosumaNumeros.js";
+import FormularioSumaNumeros from "../Components/FormulariosumaNumeros.js";
 import TablasumaNumeros from "../Components/TablasumaNumeros.js";
 
 const SumaNumeros = () => {
@@ -104,7 +104,7 @@ const SumaNumeros = () => {
   return (
     <View style={styles.container}>
       <TitulosumaNumeros resultado={resultado} />
-      <FormulariosumaNumeros cargarDatos={cargarDatos} />
+      <FormularioSumaNumeros cargarDatos={cargarDatos} />
       <TablasumaNumeros sumas={sumas} eliminarSuma={eliminarSuma} />
     </View>
   );

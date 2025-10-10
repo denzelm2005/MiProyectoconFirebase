@@ -4,7 +4,7 @@ import { db } from "../database/firebaseconfig";
 import { collection, addDoc } from "firebase/firestore";
 
 // El componente se llama FormularioSumaNumeros para coincidir con tu estructura
-const FormularioSumaNumeros = ({ cargarDatos }) => {
+const FormulariosumaNumeros = ({ cargarDatos }) => {
   // Cambiamos 'nombre' y 'edad' a 'num1' y 'num2'
   const [num1, setNum1] = useState("");
   const [num2, setNum2] = useState("");
@@ -69,4 +69,4 @@ const styles = StyleSheet.create({
 });
 
 // Exportamos el nuevo componente
-export default FormularioSumaNumeros;
+export default FormulariosumaNumeros;

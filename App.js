@@ -6,6 +6,7 @@ import Promedio from "./src/views/Promedio";
 import SumNum from "./src/views/SumNum";
 import Triangulos from "./src/views/Triangulos";
 import IMC from "./src/views/IMC";
+import Usuarios from "./src/views/Usuarios";
 
 import { View, StyleSheet,ScrollView } from "react-native";
 
@@ -20,6 +21,7 @@ return (
 <SumNum />
 <Triangulos />
 <IMC />
+<Usuarios />
 
 </ScrollView>
 </>
