@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet,Button,Alert } from "react-native";
 import { db } from "../database/firebaseconfig.js";
 import { collection, getDocs, deleteDoc, doc, addDoc, updateDoc } from "firebase/firestore";
 import FormularioProductos from "../Components/FormularioProductos.js";
 import TablaProductos from "../Components/TablaProductos.js";
 
-const Productos = () => {
+const Productos = ({ cerrarSesion}) => {
   const [productos, setProductos] = useState([]);
   const [nuevoProducto, setNuevoProducto] = useState({ nombre: "", precio: "" });
   const [idProducto, setIdProducto] = useState(null);
@@ -88,6 +88,8 @@ const Productos = () => {
 
   return (
     <View style={styles.container}>
+      <Button title="Cerrar Sesión" onPress={cerrarSesion} />
+      
       <FormularioProductos
         nuevoProducto={nuevoProducto}
         manejoCambio={manejoCambio}
