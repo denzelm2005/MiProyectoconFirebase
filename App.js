@@ -4,6 +4,7 @@ import { View } from "react-native";
 import { auth } from "./src/database/firebaseconfig";
 import Login from "./src/views/Login";
 import Productos from "./src/views/Productos";
+import ProductosRealtime from "./src/views/ProductosRealtime";
 
 
 export default function App() {
@@ -29,7 +30,7 @@ export default function App() {
   // Si hay usuario autenticado, mostrar productos
   return (
     <View style={{ flex: 1 }}>
-      <Productos cerrarSesion={cerrarSesion}/>
+      <ProductosRealtime cerrarSesion={cerrarSesion}/>
     </View>
   );
 }
