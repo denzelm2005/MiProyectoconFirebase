@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { View } from "react-native";
+import { View,ScrollView } from "react-native";
 import { auth } from "./src/database/firebaseconfig";
 import Login from "./src/views/Login";
 import Productos from "./src/views/Productos";
 import ProductosRealtime from "./src/views/ProductosRealtime";
+import CalculadoraIMC from "./src/views/CalculadoraIMC";
 
 
 export default function App() {
@@ -30,7 +31,10 @@ export default function App() {
   // Si hay usuario autenticado, mostrar productos
   return (
     <View style={{ flex: 1 }}>
+      <ScrollView>
       <ProductosRealtime cerrarSesion={cerrarSesion}/>
+      <CalculadoraIMC cerrarSesion={cerrarSesion}/>
+      </ScrollView>
     </View>
   );
 }
