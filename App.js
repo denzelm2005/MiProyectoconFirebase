@@ -32,8 +32,8 @@ export default function App() {
   return (
     <View style={{ flex: 1 }}>
       <ScrollView>
-      <ProductosRealtime cerrarSesion={cerrarSesion}/>
-      <CalculadoraIMC cerrarSesion={cerrarSesion}/>
+      <Productos cerrarSesion={cerrarSesion}/>
+      
       </ScrollView>
     </View>
   );
